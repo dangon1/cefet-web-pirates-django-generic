@@ -23,6 +23,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('',views.ListarTesouros.as_view(),name="lista_tesouros"),
     path('inserir',views.InserirTesouro.as_view(),name="inserir"),
-    path('editar/<int:id>/',views.SalvarTesouro.as_view(),name="editar"),
-    path('remover/<int:id>/',views.RemoverTesouro.as_view(),name="excluir"),
+    path('editar/<int:pk>/',views.AtualizarTesouro.as_view(),name="editar"),
+    path('remover/<int:pk>/',views.RemoverTesouro.as_view(),name="excluir"),
 ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
