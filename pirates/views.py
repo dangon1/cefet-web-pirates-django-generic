@@ -4,6 +4,8 @@ from django.http import HttpResponseRedirect
 from django.views import View
 from django.forms import ModelForm
 from django.urls import reverse
+from django.urls import reverse_lazy
+from django.views.generic.edit import CreateView
 
 from .models import Tesouro
 # Create your views here.
@@ -50,3 +52,9 @@ class RemoverTesouro(View):
     def get(self,request,id):
         Tesouro.objects.get(id=id).delete()
         return HttpResponseRedirect(reverse('lista_tesouros') )
+
+class InserirTesouro(CreateView):
+	model = Tesouro
+	fields = ['nome', 'quantidade', 'preco', 'img_tesouro']
+	template_name = 'salvar_tesouro.html'
+	succes_url = reverse_lazy('lista_tesouros')
